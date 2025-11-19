@@ -151,7 +151,7 @@ async def get_invite(invite_code: str, db: Session = Depends(get_db)):
         HTTPException: Se o convite não for encontrado
     """
     db_invite = db.query(Invite).filter(
-        Invite.invite_code == invite_code
+        Invite.invite_code == invite_code.strip()
     ).first()
 
     if not db_invite:
