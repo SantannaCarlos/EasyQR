@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Convite - Sistema de Convites</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2>Sistema de Convites QR Code</h2>
+            <div class="nav-actions">
+                <a href="/dashboard" class="btn btn-secondary">Voltar</a>
+                <button onclick="logout()" class="btn btn-secondary">Sair</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content-box">
+            <h2>Criar Novo Convite</h2>
+            <p class="subtitle">Preencha os dados para gerar um QR Code único</p>
+
+            <form id="createInviteForm">
+                <div class="form-group">
+                    <label for="inviteData">Informações do Convite</label>
+                    <textarea id="inviteData" name="inviteData" rows="4" required
+                              placeholder="Digite as informações do convite (nome do evento, data, local, etc.)"></textarea>
+                    <small>Exemplo: Festa de aniversário - João Silva - 25/11/2025 - 19h - Rua ABC, 123</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="createBtn">
+                    Gerar QR Code
+                </button>
+
+                <div id="createError" class="error-message" style="display: none;"></div>
+                <div id="createSuccess" class="success-message" style="display: none;"></div>
+            </form>
+
+            <div id="qrCodeResult" class="qr-result" style="display: none;">
+                <h3>QR Code Gerado com Sucesso!</h3>
+                <div class="qr-code-container">
+                    <img id="qrCodeImage" src="" alt="QR Code">
+                </div>
+                <div class="invite-info">
+                    <p><strong>Código do Convite:</strong> <code id="inviteCode"></code></p>
+                    <p><strong>Informações:</strong> <span id="inviteInfo"></span></p>
+                    <p><strong>Data de Criação:</strong> <span id="createDate"></span></p>
+                </div>
+                <div class="action-buttons">
+                    <button onclick="downloadQRCode()" class="btn btn-primary">Baixar QR Code</button>
+                    <button onclick="shareQRCode()" class="btn btn-secondary">Compartilhar</button>
+                    <button onclick="resetForm()" class="btn btn-secondary">Criar Outro</button>
+                </div>
+            </div>
+
+            <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Gerando QR Code...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/create.js"></script>
+</body>
+</html>

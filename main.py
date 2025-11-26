@@ -1,31 +1,21 @@
-"""
-API FastAPI para geração e leitura de QR Codes.
-
-Esta API permite:
-- Gerar QR Codes únicos a partir de strings
-- Ler e validar QR Codes de imagens
-- Armazenar e consultar convites no banco de dados
-"""
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+from pathlib import Path
 
 from app.api.routes import router
 from app.database.database import engine, Base
-from app.models.invite import Invite  # noqa: F401
+from app.models.invite import Invite
 
-# Criar tabelas no banco de dados
 Base.metadata.create_all(bind=engine)
-
-# Criar aplicação FastAPI
 app = FastAPI(
-    title="QR Code API",
-    description="API para geração e leitura de QR Codes com validação de convites",
+    title="EasyQR API",
+    description="Sistema de convites com QR Code",
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc"
 )
-
-# Configurar CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -34,29 +24,42 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Incluir rotas
 app.include_router(router, prefix="/api/v1", tags=["QR Code"])
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 @app.get("/")
 async def root():
-    """Endpoint raiz com informações da API."""
-    return {
-        "message": "QR Code API",
-        "version": "1.0.0",
-        "docs": "/docs",
-        "endpoints": {
-            "generate_qrcode": "POST /api/v1/generate-qrcode",
-            "read_qrcode": "POST /api/v1/read-qrcode",
-            "get_invite": "GET /api/v1/invites/{invite_code}",
-            "list_invites": "GET /api/v1/invites"
-        }
-    }
+    return FileResponse("templates/login.html")
+
+
+@app.get("/login")
+async def login_page():
+    return FileResponse("templates/login.html")
+
+
+@app.get("/dashboard")
+async def dashboard_page():
+    return FileResponse("templates/dashboard.html")
+
+
+@app.get("/create")
+async def create_page():
+    return FileResponse("templates/create.html")
+
+
+@app.get("/validate")
+async def validate_page():
+    return FileResponse("templates/validate.html")
+
+
+@app.get("/list")
+async def list_page():
+    return FileResponse("templates/list.html")
 
 
 @app.get("/health")
 async def health_check():
-    """Endpoint de health check."""
     return {"status": "healthy"}
 
 

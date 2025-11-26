@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar Convite - Sistema de Convites</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2>Sistema de Convites QR Code</h2>
+            <div class="nav-actions">
+                <a href="/dashboard" class="btn btn-secondary">Voltar</a>
+                <button onclick="logout()" class="btn btn-secondary">Sair</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content-box">
+            <h2>Validar Convite</h2>
+            <p class="subtitle">Faça upload de uma imagem do QR Code para validar o convite</p>
+
+            <form id="validateForm">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📷</div>
+                    <p>Clique para selecionar ou arraste uma imagem</p>
+                    <input type="file" id="qrCodeFile" accept="image/*" style="display: none;">
+                    <small>Formatos suportados: JPG, PNG, GIF</small>
+                </div>
+
+                <div id="imagePreview" class="image-preview" style="display: none;">
+                    <img id="previewImg" src="" alt="Preview">
+                    <button type="button" onclick="clearImage()" class="btn btn-secondary btn-small">
+                        Remover Imagem
+                    </button>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="validateBtn" disabled>
+                    Validar Convite
+                </button>
+
+                <div id="validateError" class="error-message" style="display: none;"></div>
+            </form>
+
+            <div id="validationResult" class="validation-result" style="display: none;">
+                <div id="successResult" class="success-result" style="display: none;">
+                    <div class="result-icon success">✓</div>
+                    <h3>Convite Válido!</h3>
+                    <div class="invite-details">
+                        <p><strong>Código:</strong> <code id="resultCode"></code></p>
+                        <p><strong>Informações:</strong> <span id="resultData"></span></p>
+                        <p><strong>Status:</strong> <span id="resultStatus" class="badge"></span></p>
+                        <p><strong>Validado em:</strong> <span id="validationTime"></span></p>
+                    </div>
+                    <button onclick="resetValidation()" class="btn btn-primary">Validar Outro</button>
+                </div>
+
+                <div id="errorResult" class="error-result" style="display: none;">
+                    <div class="result-icon error">✗</div>
+                    <h3>Convite Inválido</h3>
+                    <p id="errorMessage"></p>
+                    <button onclick="resetValidation()" class="btn btn-primary">Tentar Novamente</button>
+                </div>
+            </div>
+
+            <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Validando convite...</p>
+            </div>
+        </div>
+
+        <div class="tips-box">
+            <h3>Dicas para melhor leitura:</h3>
+            <ul>
+                <li>Certifique-se de que o QR Code está bem iluminado</li>
+                <li>A imagem deve estar em foco e nítida</li>
+                <li>Evite reflexos ou sombras no QR Code</li>
+                <li>O QR Code deve ocupar boa parte da imagem</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/validate.js"></script>
+</body>
+</html>

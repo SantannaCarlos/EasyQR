@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Convites - Sistema de Convites</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2>Sistema de Convites QR Code</h2>
+            <div class="nav-actions">
+                <a href="/dashboard" class="btn btn-secondary">Voltar</a>
+                <button onclick="logout()" class="btn btn-secondary">Sair</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content-box">
+            <div class="list-header">
+                <h2>Todos os Convites</h2>
+                <button onclick="refreshList()" class="btn btn-secondary">Atualizar</button>
+            </div>
+
+            <div class="filter-box">
+                <input type="text" id="searchInput" placeholder="Buscar por código ou informações..."
+                       onkeyup="filterInvites()">
+                <select id="statusFilter" onchange="filterInvites()">
+                    <option value="all">Todos os Status</option>
+                    <option value="validated">Validados</option>
+                    <option value="pending">Pendentes</option>
+                </select>
+            </div>
+
+            <div id="invitesList" class="invites-list">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Carregando convites...</p>
+                </div>
+            </div>
+
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <p>Nenhum convite encontrado</p>
+                <a href="/create" class="btn btn-primary">Criar Primeiro Convite</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/list.js"></script>
+</body>
+</html>

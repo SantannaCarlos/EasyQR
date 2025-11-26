@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema de Convites QR Code</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h1>Sistema de Convites</h1>
+            <p class="subtitle">Geração e Validação de QR Codes</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" name="username" required
+                           placeholder="Digite seu usuário" autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required
+                           placeholder="Digite sua senha" autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Entrar</button>
+
+                <div id="loginError" class="error-message" style="display: none;"></div>
+            </form>
+
+            <div class="info-box">
+                <p><strong>Usuários de teste:</strong></p>
+                <p>Admin: <code>admin</code> / <code>admin123</code></p>
+                <p>Usuário: <code>user</code> / <code>user123</code></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/auth.js"></script>
+</body>
+</html>

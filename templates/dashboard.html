@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema de Convites</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2>Sistema de Convites QR Code</h2>
+            <div class="nav-actions">
+                <span id="userInfo" class="user-info"></span>
+                <button onclick="logout()" class="btn btn-secondary">Sair</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-icon">📝</div>
+                <h3>Criar Convite</h3>
+                <p>Gere um novo convite com QR Code único</p>
+                <a href="/create" class="btn btn-primary">Criar Novo Convite</a>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon">✅</div>
+                <h3>Validar Convite</h3>
+                <p>Valide um convite através do QR Code</p>
+                <a href="/validate" class="btn btn-primary">Validar Convite</a>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon">📋</div>
+                <h3>Listar Convites</h3>
+                <p>Veja todos os convites criados</p>
+                <a href="/list" class="btn btn-primary">Ver Todos</a>
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <h3>Estatísticas</h3>
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalInvites">-</div>
+                    <div class="stat-label">Total de Convites</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="validatedInvites">-</div>
+                    <div class="stat-label">Convites Validados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="pendingInvites">-</div>
+                    <div class="stat-label">Convites Pendentes</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
